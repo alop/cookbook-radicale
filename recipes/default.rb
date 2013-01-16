@@ -5,10 +5,38 @@
 
 include_recipe "users"
 
-package "radicale"
+package "radicale" do
+  action :upgrade
+end
 
-service "radicale"
+if node["platform"] == "ubuntu"
+  cookbook_file "/etc/init/radicale.conf" do
+    source "radicale.conf"
+    owner "root"
+    group "root"
+    mode  "0644"
+end
+  
+service "radicale" do
+  supports :status => true, :restart => true
 
-template "/etc/radicale/config"
+  action :enable
+end
 
-template "/etc/radicale/users"
+template "/etc/radicale/config" do
+  source "config.erb"
+  mode  0644
+  owner "root"
+  group "root"
+
+  notifies :restart, "service[radicale]"
+end
+
+template "/etc/radicale/users" do
+  source "users.erb"
+  mode  0644
+  owner "root"
+  group "root"
+
+  notifies :restart, "service[radicale]"
+end
