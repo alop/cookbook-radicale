@@ -1,0 +1,75 @@
+# -*- mode: conf -*-
+# vim:ft=cfg
+
+# Config file for Radicale - A simple calendar server
+#
+# Place it into /etc/radicale/config (global) 
+# or ~/.config/radicale/config (user)
+#
+# The current values are the default ones
+
+
+[server]
+# CalDAV server hostnames separated by a comma
+# IPv4 syntax: address:port
+# IPv6 syntax: [address]:port
+# IPv6 adresses are configured to only allow IPv6 connections
+hosts = 0.0.0.0:5232
+# Daemon flag
+daemon = <%= node["radicale"]["daemon"] %>
+# File storing the PID in daemon mode
+pid = <%= node["radicale"]["pid"] %>
+# SSL flag, enable HTTPS protocol
+ssl = <%= node["radicale"]["ssl"] %>
+# SSL certificate path
+certificate = /etc/apache2/ssl/server.crt
+# SSL private key
+key = /etc/apache2/ssl/server.key
+
+[encoding]
+# Encoding for responding requests
+request = utf-8
+# Encoding for storing local calendars
+stock = utf-8
+
+[acl]
+# Access method
+# Value: None | htpasswd | LDAP
+type = <%= node["radicale"]["acl"] %>
+# Usernames used for public calendars, separated by a comma
+public_users = <%= node["radicale"]["public_users"] %>
+# Usernames used for private calendars, separated by a comma
+private_users = <%= node["radicale"]["private_users"] %>
+# Htpasswd filename
+htpasswd_filename = <%= node["radicale"]["htpasswd_file"] %>
+# Htpasswd encryption method
+# Value: plain | sha1 | crypt
+htpasswd_encryption = <%= node["radicale"]["htpasswd_encryption"] %>
+# LDAP server URL, with protocol and port
+ldap_url = <%= node["radicale"]["ldap_url"] %>
+# LDAP base path
+ldap_base = <%= node["radicale"]["ldap_base"] %>
+# LDAP login attribute
+ldap_attribute = <%= node["radicale"]["ldap_attribute"] %>
+# LDAP dn for initial login, used if LDAP server does not allow anonymous searches
+# Leave empty if searches are anonymous
+ldap_binddn = <%= node["radicale"]["ldap_binddn"] %>
+# LDAP password for initial login, used with ldap_binddn
+ldap_password = <%= node["radicale"]["ldap_password"] %>
+
+[storage]
+# Folder for storing local calendars, created if not present
+folder = <%= node["radicale"]["folder"] %>
+
+[logging]
+# Logging configuration file
+# If no config is given, simple information is printed on the standard output
+# For more information about the syntax of the configuration file, see:
+# http://docs.python.org/library/logging.config.html
+config = <%= node["radicale"]["logging"]["config"] %>
+# Set the default logging level to debug
+debug = <%= node["radicale"]["logging"]["debug"] %>
+# Store all environment variables (including those set in the shell)
+full_environment = <%= node["radicale"]["logging"]["full_env"] %>
+
+
