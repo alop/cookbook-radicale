@@ -17,6 +17,7 @@ if node["platform"] == "ubuntu"
     owner "root"
     group "root"
     mode  "0644"
+  end
 end
   
 service "radicale" do
