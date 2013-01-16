@@ -5,6 +5,8 @@
 
 include_recipe "users"
 
+users = data_bag('users')
+
 package "radicale" do
   action :upgrade
 end
@@ -37,6 +39,7 @@ template "/etc/radicale/users" do
   mode  0644
   owner "root"
   group "root"
+  variables( :users => users )
 
   notifies :restart, "service[radicale]"
 end
