@@ -1,0 +1,6 @@
+# file managed by chef
+# local modifications will be overwritten
+
+<% @users.each do |user| -%>
+<%= user.id %>:<%= user.password %>
+<% end %>
