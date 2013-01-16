@@ -1,7 +1,7 @@
 default["radicale"]["daemon"] = "False"
 default["radicale"]["pid"] = nil
 default["radicale"]["ssl"] = "False"
-deafult["radicale"]["acl"] = "None"
+default["radicale"]["acl"] = "None"
 default["radicale"]["public_users"] = "public"
 default["radicale"]["private_users"] = "private"
 default["radicale"]["htpasswd_file"] = "/etc/radicale/users"
