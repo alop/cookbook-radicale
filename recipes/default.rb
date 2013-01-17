@@ -18,6 +18,10 @@ if node["platform"] == "ubuntu"
     group "root"
     mode  "0644"
   end
+
+  link "/etc/init.d/radicale" do
+    to "/lib/init/upstart-job"
+  end
 end
   
 service "radicale" do
