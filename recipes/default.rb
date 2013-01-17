@@ -3,8 +3,6 @@
 # Recipe:: default
 #
 
-include_recipe "users"
-
 users = data_bag('users')
 
 package "radicale" do
