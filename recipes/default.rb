@@ -31,7 +31,7 @@ end
 service "radicale" do
   supports :status => true, :restart => true
 
-  action :enable
+  action [:enable,:start]
 end
 
 template "/etc/radicale/config" do
