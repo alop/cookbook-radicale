@@ -4,6 +4,12 @@
 #
 
 users = data_bag('users')
+ulist = Hash.new
+
+users.each do |id|
+  userpass = data_bag_item('users', id)
+  ulist[id] = userpass['password']
+end
 
 package "radicale" do
   action :upgrade
@@ -42,7 +48,7 @@ template "/etc/radicale/users" do
   mode  0644
   owner "root"
   group "root"
-  variables( :users => users )
+  variables( :userlist => ulist )
 
   notifies :restart, "service[radicale]"
 end
