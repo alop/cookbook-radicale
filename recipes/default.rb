@@ -15,6 +15,9 @@ package "radicale" do
   action :upgrade
 end
 
+# Ensure log directory exists (If not radicale silently fails)
+directory '/var/log/radicale/'
+
 if node["platform"] == "ubuntu"
   cookbook_file "/etc/init/radicale.conf" do
     source "radicale.conf"
